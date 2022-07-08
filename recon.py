@@ -212,8 +212,8 @@ def projection(K, R, T, originImg, depthImg, scaleFactor = 256, type=2): # in de
                 xyz = xyz - T
                 XYZ = R_inv.dot(xyz)
 
-                XYZ[0] = XYZ[0] * 1          # scale을 위해 x를 곱함 , 좌우 간격
-                XYZ[1] = XYZ[1] * 2          # scale을 위해 y를 곱함 , 위아래 간격
+                XYZ[0] = XYZ[0] * 5          # scale을 위해 5를 곱함 , 좌우 간격
+                XYZ[1] = XYZ[1] * 10         # scale을 위해 10를 곱함 , 위아래 간격
                 XYZ[2] = XYZ[2] + depth / 50 # scale을 위해 50을 나눔 , depth 깊이
 
                 

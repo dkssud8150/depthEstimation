@@ -1,4 +1,5 @@
 # https://pytorch.org/hub/pytorch_vision_deeplabv3_resnet101/
+# https://colab.research.google.com/drive/1dWg0nx7KEYGSH05heY2_z5hosHBK3EbP#scrollTo=oGLyq3wY1CeO
 
 import torch
 import torch.nn
@@ -87,7 +88,7 @@ def main():
                 
                 # https://github.com/nkmk/python-snippets/blob/a613092203697247a5999eab69b222c2c2a4a497/notebook/pillow_composite.py#L11-L13
                 saveImg = Image.composite(pred, imgd, pred.convert('L')) 
-                
+
                 saveImg.save(args.save_dir + "/" + img_path.split('/')[-1])
                 print("save img file , ", img_path.split('/')[-1])
 
