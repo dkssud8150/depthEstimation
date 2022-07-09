@@ -26,7 +26,7 @@ def parsing():
     parser.add_argument("--ckpt", type=str, default=None, help="where is your checkpoints")
     parser.add_argument("--gpu", type=str, default=0, help="if you want to use gpu, you set gpu id")
     parser.add_argument("--input", type=str, default='img/kitti/origin/',help="set you want to predict file or dir")
-    parser.add_argument("--save_dir", type=str, default='result')
+    parser.add_argument("--save_dir", type=str, default='data/img/kitti/segment')
 
     return parser
 

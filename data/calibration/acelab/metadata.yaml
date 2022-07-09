@@ -1,0 +1,33 @@
+metadata:
+  gt: False
+  sensors:
+    - sensor: rs80
+      type: lidar
+
+    - sensor: front
+      type: camera
+      model: pinhole
+data:
+  - front: ./extrinsic/front_1/pylon_camera_node_image_raw/0000000010.png
+    rs80: ./extrinsic/front_1/rslidar_points/0000000005.bin
+
+  - front: ./extrinsic/front_2/pylon_camera_node_image_raw/0000000010.png
+    rs80: ./extrinsic/front_2/rslidar_points/0000000005.bin
+
+  - front: ./extrinsic/front_3/pylon_camera_node_image_raw/0000000010.png
+    rs80: ./extrinsic/front_3/rslidar_points/0000000005.bin
+
+  - front: ./extrinsic/front_4/pylon_camera_node_image_raw/0000000010.png
+    rs80: ./extrinsic/front_4/rslidar_points/0000000005.bin
+
+  - front: ./extrinsic/front_5/pylon_camera_node_image_raw/0000000010.png
+    rs80: ./extrinsic/front_5/rslidar_points/0000000005.bin
+
+  - front: ./extrinsic/front_6/pylon_camera_node_image_raw/0000000010.png
+    rs80: ./extrinsic/front_6/rslidar_points/0000000005.bin
+
+  - front: ./extrinsic/front_7/pylon_camera_node_image_raw/0000000010.png
+    rs80: ./extrinsic/front_7/rslidar_points/0000000005.bin
+
+  - front: ./extrinsic/front_8/pylon_camera_node_image_raw/0000000010.png
+    rs80: ./extrinsic/front_8/rslidar_points/0000000005.bin
