@@ -219,6 +219,54 @@ def reconstruction(pcdFile, originPath, depthPath, calibrationFile, datasetName)
 
     # save file
     open3d.io.write_point_cloud(save_path, pcd)
+   
+
+def pcd_fov(pcdPath, FOV=60):
+    
+    # for pcd_path in pcd_paths:
+    pcd_path = pcdPath[0]
+    pcd = open3d.io.read_point_cloud(pcd_path)
+    pcdNumpy = np.asarray(pcd.points, dtype=np.float32)
+    print(pcd)
+    print(type(pcd))
+    
+    os.makedirs("crop/", exist_ok=True)
+    save_path = "crop/" + pcd_path.split('/')[-1].split('.')[0] + ".ply"
+
+    print(pcdNumpy[:10])
+    
+    depths = list()
+    pcdDepth = [0] * len(pcdNumpy)
+    frontpcd = list()
+    for i in range(len(pcdNumpy)):
+        if np.isnan(pcdNumpy[i][0]): continue
+        x,y,z = pcdNumpy[i]
+        depth = np.sqrt(x**2 + y**2 + z**2)
+        pcdDepth[i] = list(np.hstack((pcdNumpy[i], depth)))
+        depths.append(depth)
+        
+        
+        azimuth = math.atan2(y,x)
+        if abs(azimuth) < (FOV / 180 * math.pi): # use only x y for FOV
+            if 0 < z < (FOV / 180 * math.pi): # use x y z for FOV
+                print(azimuth)
+                frontpcd.append(pcdNumpy[i])
+        
+    # 일단 azimuth를 구하려면 z빼고, x와 y를 통해 angle을 구하자. 그 다음 수직 부분도 고려해서 처리
+    
+    pcd = open3d.geometry.PointCloud()
+    colors = np.array([[np.random.randint(0, 255),np.random.randint(0,255),np.random.randint(0,255)] for i in range(len(pcdNumpy))])
+    pcd.points = open3d.utility.Vector3dVector(np.array(frontpcd))
+    pcd.colors = open3d.utility.Vector3dVector(colors / 255.)
+    
+    # open3d.visualization.draw_geometries([pcd],
+    #                               window_name='open3d',
+    #                               zoom=0.3412,
+    #                               front=[0.4257, -0.2125, -0.8795],
+    #                               lookat=[2.6172, 2.0475, 1.532],
+    #                               up=[-0.0694, -0.9768, 0.2024])
+
+    open3d.io.write_point_cloud(save_path, pcd)
 
 
 if __name__ == "__main__":
