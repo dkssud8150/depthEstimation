@@ -168,7 +168,7 @@ def metrics(img_path, depth_path, depth_map):
     plt.hist(gts ,bins= 255)
     plt.show()
 
-    print(f"pred max : {max(depth)}\t min : {min(depth)}\ngt max : {max(depth_map)}\t min : {min(depth_map)}")
+    print(f"pred max : {np.nanmax(depth)}\t min : {np.nanmin(depth)}\ngt max : {np.nanmax(depth_map)}\t min : {np.nanmin(depth_map)}")
 
     print(depth[:5], "\n", depth_map[:5])
 
