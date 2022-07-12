@@ -162,13 +162,14 @@ def metrics(img_path, depth_path, depth_map):
             preds.append(pred)
             gts.append(gt)
 
-    plt.subplot(1,2,1)
-    plt.hist(preds, bins=255)
-    plt.subplot(1,2,2)
-    plt.hist(gts ,bins= 255)
+    plt.hist([preds, gts], bins=255, label=['prediction','ground truth'], color = ['r','b'], log=True, rwidth=10)
+    plt.legend()
     plt.show()
 
     print(f"pred max : {np.nanmax(depth)}\t min : {np.nanmin(depth)}\ngt max : {np.nanmax(depth_map)}\t min : {np.nanmin(depth_map)}")
+    print(f"number of 0 in pred : {len(preds) - np.count_nonzero(preds)}\tnumber of 0 in gt : {len(gts) - np.count_nonzero(gts)}")
+    print(f"length : pred - {len(preds)}, gt - {len(gts)}\n\n")
+
 
     print(depth[:5], "\n", depth_map[:5])
 
